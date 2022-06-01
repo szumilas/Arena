@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="TicTacToe">
+      <UniqueIdentifier>{9aa42fe1-1eea-4da2-823e-c2c3cb353d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TurboSnake">
+      <UniqueIdentifier>{e3e68e59-54cc-46a0-9942-1daaf9f22388}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTacToeGame.cpp">
+      <Filter>TicTacToe</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTacToePlayer.cpp">
+      <Filter>TicTacToe</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTacToePlayerRandom.cpp">
+      <Filter>TicTacToe</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboSnakeGame.cpp">
+      <Filter>TurboSnake</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboSnakePlayer.cpp">
+      <Filter>TurboSnake</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboSnakePlayerRandom.cpp">
+      <Filter>TurboSnake</Filter>
+    </ClCompile>
+    <ClCompile Include="Printer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TicTacToePlayer.h">
+      <Filter>TicTacToe</Filter>
+    </ClInclude>
+    <ClInclude Include="TicTacToeGame.h">
+      <Filter>TicTacToe</Filter>
+    </ClInclude>
+    <ClInclude Include="TicTacToePlayerRandom.h">
+      <Filter>TicTacToe</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboSnakeGame.h">
+      <Filter>TurboSnake</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboSnakePlayer.h">
+      <Filter>TurboSnake</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboSnakePlayerRandom.h">
+      <Filter>TurboSnake</Filter>
+    </ClInclude>
+    <ClInclude Include="Printer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
