@@ -2,6 +2,20 @@
 
 #include <chrono>
 #include <Windows.h>
+#include <string>
+
+Game::Game(Strategy strategy, int duration, int width, int height)
+	: strategy(strategy), duration(duration), gameWidth(width), gameHeight(height)
+{
+	map = new char[gameWidth * gameHeight]();
+	hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
+	SetConsoleActiveScreenBuffer(hConsole);
+}
+
+Game::~Game()
+{
+	delete[] map;
+}
 
 void Game::Start()
 {
@@ -30,6 +44,7 @@ void Game::MainLoop()
 		if (duration > elapsed_time_ms)
 		{
 			Sleep(duration - elapsed_time_ms);
+			SetConsoleTitle(std::to_wstring(static_cast<int>(1000.0 / elapsed_time_ms)).c_str());
 		}
 	}
 }
@@ -41,7 +56,7 @@ void Game::Update()
 
 void Game::Print()
 {
-
+	WriteConsoleOutputCharacterA(hConsole, map, gameWidth * gameHeight, { 0, 0 }, &dwBytesWritten);
 }
 
 void Game::Move()
@@ -77,7 +92,7 @@ void Game::TurnBasedMove()
 			continue;
 		}
 
-		player->Move();
+		player->CalculateNextMove();
 		break;
 	}
 
@@ -89,6 +104,6 @@ void Game::RealTimeMove()
 {
 	for (auto& player : players)
 	{
-		player->Move();
+		player->CalculateNextMove();
 	}
 }

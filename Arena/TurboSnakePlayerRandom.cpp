@@ -1,7 +1,6 @@
 #include "TurboSnakePlayerRandom.h"
 
-TurboSnakeOutput TurboSnakePlayerRandom::GetMove()
+void TurboSnakePlayerRandom::CalculateNextMove()
 {
-	return rand() % 4 + 1;
+	nextMove = rand() % 4 + 1;
 }
-

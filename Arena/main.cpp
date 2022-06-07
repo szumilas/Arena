@@ -11,33 +11,21 @@
 
 int main()
 {
-	//TicTacToeGame game(Game::Strategy::TurnBased, 1000);
-	//game.AddPlayer<TicTacToePlayerRandom>('x');
-	//game.AddPlayer<TicTacToePlayerRandom>('o');x
+	int gameWidth = 120;              // [characters]
+	int gameHeight = 40;              // [characters]
+	int singleFrameDurationTime = 50; // [ms]
 
-	/*TurboSnakeGame game(Game::Strategy::RealTime, 50);
+	//------------------------------------------------------------------
+	// Remember to adjust console window to size gameWidth x gameHeight
+	//------------------------------------------------------------------
 
-	game.AddPlayer<TurboSnakePlayerRandom>();
+	TurboSnakeGame game(Game::Strategy::RealTime, singleFrameDurationTime, gameWidth, gameHeight);
 
-	game.Start();*/
+	game.AddPlayer<TurboSnakePlayerRandom>('A');
+	game.AddPlayer<TurboSnakePlayerRandom>('B');
+	game.AddPlayer<TurboSnakePlayerRandom>('C');
+	game.AddPlayer<TurboSnakePlayerRandom>('D');
+	game.AddPlayer<TurboSnakePlayerRandom>('E');
 
-	std::string str;
-
-	srand(time(NULL));
-
-	for (int q = 0; q < 10000; q++)
-		str.push_back(static_cast<char>(rand() % ('Z' - 'A') + 'A'));
-
-	auto t_start_str = std::chrono::high_resolution_clock::now();
-	std::cout << str;
-	auto t_end_str = std::chrono::high_resolution_clock::now();
-
-	double elapsed_time_ms_str = std::chrono::duration<double, std::milli>(t_end_str - t_start_str).count();
-
-	t_start_str = std::chrono::high_resolution_clock::now();
-	printf("%s", str);
-	t_end_str = std::chrono::high_resolution_clock::now();
-
-	double elapsed_time_ms_printf = std::chrono::duration<double, std::milli>(t_end_str - t_start_str).count();
-
+	game.Start();
 }

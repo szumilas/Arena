@@ -9,5 +9,5 @@ public:
 	TurboSnakePlayerRandom(const Args&... args) : TurboSnakePlayer(args...) {}
 
 private:
-	TurboSnakeOutput GetMove();
+	void CalculateNextMove();
 };

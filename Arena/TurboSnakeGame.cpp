@@ -4,49 +4,93 @@
 #include "Printer.h"
 
 #include <iostream>
-
+#include <Windows.h>
 
 void TurboSnakeGame::Initialize()
 {
 	Printer::ShowConsoleCursor(false);
 
+	memset(map, ' ', gameWidth * gameHeight - 1);
+
 	for (auto& player : players)
 	{
-		dynamic_cast<TurboSnakePlayer*>(player.get())->Initialize(this);
+		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
 
-		dynamic_cast<TurboSnakePlayer*>(player.get())->SetPosition(rand() % gameWidth, rand() % gameHeight);
+		turboSnakePlayer->Initialize(this);
+
+		const auto randomX = rand() % gameWidth;
+		const auto randomY = rand() % gameHeight;
+
+		turboSnakePlayer->SetPosition(randomX, randomY);
+		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
 	}
-
-	system("CLS");
-
-	for (int q = 0; q < gameHeight; ++q)
-	{
-		Printer::Gotoxy(gameWidth, q);
-		std::cout << "|";
-	}
-
-	Printer::Gotoxy(0, gameHeight);
-
-	for (int q = 0; q < gameWidth; ++q)
-	{
-		std::cout << "-";
-	}
-
-	std::cout << "+";
 }
 
-void TurboSnakeGame::MakeMove(const TurboSnakeOutput& move)
+void TurboSnakeGame::GenerateNewBonusPoints()
 {
-	
+	if (rand() % 100 > 1)
+	{
+		const auto randomX = rand() % gameWidth;
+		const auto randomY = rand() % gameHeight;
+
+		if (GetMapElement(randomX, randomY) == ' ')
+		{
+			const auto randomValue = rand() % 9 + 1;
+			bonusPoints.push_back({ randomX, randomY, randomValue });
+			SetMapElement(randomX, randomY, '0' + randomValue);
+		}
+	}
 }
 
-void TurboSnakeGame::Update()
+void TurboSnakeGame::UpdatePlayersPosition()
 {
-	if (rand() % 100 > 75)
+	for (auto& player : players)
 	{
-		bonusPoints.push_back({ rand() % gameWidth, rand() % gameHeight, rand() % 9 + 1 });
-	}
+		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
 
+		int newX = turboSnakePlayer->x;
+		int newY = turboSnakePlayer->y;
+
+		switch (turboSnakePlayer->nextMove)
+		{
+		case 1:
+			newX++;
+			break;
+		case 2:
+			newY++;
+			break;
+		case 3:
+			newX--;
+			break;
+		case 4:
+			newY--;
+			break;
+		}
+
+		if (newX >= gameWidth)
+			newX = gameWidth - 1;
+		if (newX < 0)
+			newX = 0;
+		if (newY >= gameHeight)
+			newY = gameHeight - 1;
+		if (newY < 0)
+			newY = 0;
+
+		if (auto element = GetMapElement(newX, newY);
+			'1' <= element && element <= '9' || element == ' ')
+		{
+			SetMapElement(turboSnakePlayer->x, turboSnakePlayer->y, ' ');
+			SetMapElement(newX, newY, turboSnakePlayer->sign);
+
+			turboSnakePlayer->x = newX;
+			turboSnakePlayer->y = newY;
+		}
+
+	}
+}
+
+void TurboSnakeGame::CalculateCollisions()
+{
 	for (auto& player : players)
 	{
 		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
@@ -59,48 +103,17 @@ void TurboSnakeGame::Update()
 		if (pointTaken != bonusPoints.end())
 		{
 			turboSnakePlayer->AddPoints(pointTaken->value);
+			SetMapElement(pointTaken->x, pointTaken->y, ' ');
 			bonusPoints.erase(pointTaken);
 		}
 	}
 }
 
-void TurboSnakeGame::Print()
+void TurboSnakeGame::Update()
 {
-	for (const auto& pointToCleaned : toBeCleaned)
-	{
-		Printer::Gotoxy(pointToCleaned.first, pointToCleaned.second);
-		std::cout << " ";
-	}
-
-	toBeCleaned.clear();
-
-	for (auto& player : players)
-	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
-
-		Printer::Gotoxy(turboSnakePlayer->x, turboSnakePlayer->y);
-		std::cout << static_cast<char>(219);
-
-		toBeCleaned.push_back({ turboSnakePlayer->x, turboSnakePlayer->y });
-	}
-
-	for (const auto& bonusPoint : bonusPoints)
-	{
-		Printer::Gotoxy(bonusPoint.x, bonusPoint.y);
-		std::cout << bonusPoint.value;
-	}
-
-	Printer::Gotoxy(0, gameHeight + 1);
-
-	for (auto& player : players)
-	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
-
-		
-		std::cout << "Points: " << turboSnakePlayer->points << std::endl;
-
-		toBeCleaned.push_back({ turboSnakePlayer->x, turboSnakePlayer->y });
-	}
+	UpdatePlayersPosition();
+	CalculateCollisions();
+	GenerateNewBonusPoints();
 }
 
 Game::State TurboSnakeGame::GetState()

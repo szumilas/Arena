@@ -5,6 +5,7 @@
 #include <list>
 #include <memory>
 #include <functional>
+#include <Windows.h>
 
 class Game
 {
@@ -22,7 +23,8 @@ public:
 		GameOver,
 	};
 
-	Game(Strategy strategy, int duration) : strategy(strategy), duration(duration) {}
+	Game(Strategy strategy, int duration, int width, int height);
+	virtual ~Game();
 
 	virtual void Start();
 
@@ -44,7 +46,19 @@ private:
 	void RealTimeMove();
 
 protected:
+
+	inline char& GetMapElement(int x, int y) { return map[y * gameWidth + x]; }
+	inline void SetMapElement(int x, int y, char value) { map[y * gameWidth + x] = value; }
+
+protected:
 	std::list<std::unique_ptr<Player>> players;
+
+	DWORD dwBytesWritten = 0;
+	HANDLE hConsole;
+
+	const int gameWidth;
+	const int gameHeight;
+	char* map;
 
 private:
 

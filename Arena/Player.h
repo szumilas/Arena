@@ -7,6 +7,6 @@ class Player
 	friend class Game;
 
 private:
-	virtual void Move();
+	virtual void CalculateNextMove();
 
 };
