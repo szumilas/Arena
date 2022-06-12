@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Printer.h"
 
 #include <chrono>
 #include <Windows.h>
@@ -8,6 +9,8 @@ Game::Game(Strategy strategy, int duration, int width, int height)
 	: strategy(strategy), duration(duration), gameWidth(width), gameHeight(height)
 {
 	map = new char[gameWidth * gameHeight]();
+	colors = new WORD[gameWidth * gameHeight]();
+
 	hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 	SetConsoleActiveScreenBuffer(hConsole);
 }
@@ -15,6 +18,7 @@ Game::Game(Strategy strategy, int duration, int width, int height)
 Game::~Game()
 {
 	delete[] map;
+	delete[] colors;
 }
 
 void Game::Start()
@@ -56,6 +60,7 @@ void Game::Update()
 
 void Game::Print()
 {
+	WriteConsoleOutputAttribute(hConsole, colors, gameWidth * gameHeight, { 0, 0 }, &dwBytesWritten);
 	WriteConsoleOutputCharacterA(hConsole, map, gameWidth * gameHeight, { 0, 0 }, &dwBytesWritten);
 }
 

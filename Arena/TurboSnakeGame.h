@@ -1,10 +1,7 @@
 #pragma once
 
 #include "Game.h"
-
-
-
-using TurboSnakeOutput = int;
+#include "Printer.h"
 
 struct BonusPoint
 {
@@ -21,6 +18,7 @@ public:
 
 	inline auto LocateBonusPoints() const { return &bonusPoints; }
 	virtual void Update();
+	virtual void Print();
 	Game::State GetState() final;
 
 private:
@@ -32,5 +30,5 @@ private:
 private:
 	std::list<BonusPoint> bonusPoints;
 
-
+	int defaultMapColor = BG_LightAqua;
 };
