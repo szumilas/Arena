@@ -25,7 +25,7 @@ void Game::Start()
 {
 	if (!players.size())
 	{
-		std::terminate();
+		exit(-1);
 	}
 	duration /= players.size();
 	srand(time(NULL));

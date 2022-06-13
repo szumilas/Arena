@@ -6,6 +6,8 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 void TurboSnakeGame::Initialize()
 {
@@ -18,11 +20,12 @@ void TurboSnakeGame::Initialize()
 		colors[q] = defaultMapColor;
 	}
 
+	char sign = 'A';
 	for (auto& player : players)
 	{
 		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
 
-		turboSnakePlayer->Initialize(this);
+		turboSnakePlayer->Initialize(this, sign);
 
 		const auto randomX = rand() % mapWidth;
 		const auto randomY = rand() % mapHeight;
@@ -30,6 +33,8 @@ void TurboSnakeGame::Initialize()
 		turboSnakePlayer->SetPosition(randomX, randomY);
 		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
 		SetMapColor(randomX, randomY, Color::Black | Color::BG_LightYellow);
+
+		sign++;
 	}
 
 	PrintPanel();
@@ -79,6 +84,9 @@ void TurboSnakeGame::PrintPanel()
 
 	WriteConsoleOutputAttribute(hConsole, &std::vector<WORD>(mapWidth * panelHeight, Color::BG_BrightWhite | Color::Black).front(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
 	WriteConsoleOutputCharacterA(hConsole, panel.c_str(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
+
+	std::string menuText = "[P] Pause    [R] Restart    [E] Exit";
+	WriteConsoleOutputCharacterA(hConsole, menuText.c_str(), menuText.size(), { 2, mapHeight + 3 }, &dwBytesWritten);
 }
 
 void TurboSnakeGame::PrintStats()
@@ -94,8 +102,15 @@ void TurboSnakeGame::PrintStats()
 		std::string text;
 
 		text += turboSnakePlayer->sign;
-		text += " - ";
-		text += std::to_string(turboSnakePlayer->points);
+		text += " - [";
+
+		std::ostringstream ss;
+		ss << std::setw(3) << std::setfill(' ') << turboSnakePlayer->points;
+		std::string points(ss.str());
+
+		text += points;
+		text += "] ";
+		text += turboSnakePlayer->teamName.substr(0, offset - 12);
 
 		WriteConsoleOutputCharacterA(hConsole, text.c_str(), text.size(), { x + 1, mapHeight + 1 }, &dwBytesWritten);
 

@@ -21,9 +21,9 @@ int main()
 
 	TurboSnakeGame game(Game::Strategy::TurnBased, singleFrameDurationTime, gameWidth, gameHeight);
 
-	game.AddPlayer<TurboSnakePlayerGreedy>('A');
-	game.AddPlayer<TurboSnakePlayerGreedy>('B');
-	game.AddPlayer<TurboSnakePlayerGreedy>('C');
+	game.AddPlayer<TurboSnakePlayerGreedy>("Team name 1");
+	game.AddPlayer<TurboSnakePlayerGreedy>("Team name 2");
+	game.AddPlayer<TurboSnakePlayerGreedy>("Team name 3");
 
 	game.Start();
 }
