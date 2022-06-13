@@ -4,3 +4,8 @@ void Player::CalculateNextMove()
 {
 
 }
+
+void Player::ResetNextMove()
+{
+
+}

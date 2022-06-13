@@ -13,16 +13,18 @@ public:
 protected:
 
 	int nextMove = 0;
+	TurboSnakeGame* game = nullptr;
+
+	int x{};
+	int y{};
 
 private:
 	inline void SetPosition(int newx, int newy) { x = newx; y = newy; }
 	inline void AddPoints(int point) { points += point; }
 	void Initialize(TurboSnakeGame*);
-	TurboSnakeGame* game = nullptr;
+	void ResetNextMove() { nextMove = 0;}
 
 	int points = 0;
-	int x{};
-	int y{};
 
 	char sign;
 };

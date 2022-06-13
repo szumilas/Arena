@@ -21,6 +21,8 @@ public:
 	virtual void Print();
 	Game::State GetState() final;
 
+	inline std::list<BonusPoint>& GetBonusPoints() { return bonusPoints; }
+
 private:
 	virtual void Initialize();
 	void GenerateNewBonusPoints();

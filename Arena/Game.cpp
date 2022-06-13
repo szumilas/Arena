@@ -91,6 +91,11 @@ void Game::TurnBasedMove()
 
 	for (auto& player : players)
 	{
+		player->ResetNextMove();
+	}
+
+	for (auto& player : players)
+	{
 		if (x < i)
 		{
 			++x;

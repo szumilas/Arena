@@ -8,5 +8,6 @@ class Player
 
 private:
 	virtual void CalculateNextMove();
+	virtual void ResetNextMove();
 
 };

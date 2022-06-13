@@ -39,6 +39,9 @@
     <ClCompile Include="Printer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TurboSnakePlayerGreedy.cpp">
+      <Filter>TurboSnake</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Printer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboSnakePlayerGreedy.h">
+      <Filter>TurboSnake</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -146,6 +146,7 @@
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="TurboSnakeGame.cpp" />
     <ClCompile Include="TurboSnakePlayer.cpp" />
+    <ClCompile Include="TurboSnakePlayerGreedy.cpp" />
     <ClCompile Include="TurboSnakePlayerRandom.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Printer.h" />
     <ClInclude Include="TurboSnakeGame.h" />
     <ClInclude Include="TurboSnakePlayer.h" />
+    <ClInclude Include="TurboSnakePlayerGreedy.h" />
     <ClInclude Include="TurboSnakePlayerRandom.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
