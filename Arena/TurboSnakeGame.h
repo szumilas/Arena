@@ -28,6 +28,8 @@ private:
 	void GenerateNewBonusPoints();
 	void UpdatePlayersPosition();
 	void CalculateCollisions();
+	void PrintPanel();
+	void PrintStats();
 
 private:
 	std::list<BonusPoint> bonusPoints;

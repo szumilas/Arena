@@ -5,14 +5,15 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <string>
 
 void TurboSnakeGame::Initialize()
 {
 	Printer::ShowConsoleCursor(hConsole, false);
 
-	memset(map, ' ', gameWidth * gameHeight - 1);
+	memset(map, ' ', mapWidth * mapHeight - 1);
 
-	for (int q = 0; q < gameWidth * gameHeight; q++)
+	for (int q = 0; q < mapWidth * mapHeight; q++)
 	{
 		colors[q] = defaultMapColor;
 	}
@@ -23,21 +24,91 @@ void TurboSnakeGame::Initialize()
 
 		turboSnakePlayer->Initialize(this);
 
-		const auto randomX = rand() % gameWidth;
-		const auto randomY = rand() % gameHeight;
+		const auto randomX = rand() % mapWidth;
+		const auto randomY = rand() % mapHeight;
 
 		turboSnakePlayer->SetPosition(randomX, randomY);
 		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
 		SetMapColor(randomX, randomY, Color::Black | Color::BG_LightYellow);
 	}
+
+	PrintPanel();
+}
+
+void TurboSnakeGame::PrintPanel()
+{
+	std::string panel;
+
+	auto offset = (mapWidth - 2) / players.size();
+
+	panel += static_cast<char>(201);
+	for (int q = 0; q < players.size() - 1; ++q)
+	{
+		panel += std::string(offset - 1, static_cast<char>(205));
+		panel += static_cast<char>(203);
+	}
+	panel += std::string(mapWidth - 2 - offset * (players.size() - 1), static_cast<char>(205));
+	panel += static_cast<char>(187);
+
+	panel += static_cast<char>(186);
+	for (int q = 0; q < players.size() - 1; ++q)
+	{
+		panel += std::string(offset - 1, ' ');
+		panel += static_cast<char>(186);
+	}
+	panel += std::string(mapWidth - 2 - offset * (players.size() - 1), ' ');
+	panel += static_cast<char>(186);
+
+
+	panel += static_cast<char>(204);
+	for (int q = 0; q < players.size() - 1; ++q)
+	{
+		panel += std::string(offset - 1, static_cast<char>(205));
+		panel += static_cast<char>(202);
+	}
+	panel += std::string(mapWidth - 2 - offset * (players.size() - 1), static_cast<char>(205));
+	panel += static_cast<char>(185);
+
+	panel += static_cast<char>(186);
+	panel += std::string(mapWidth - 2, ' ');
+	panel += static_cast<char>(186);
+
+	panel += static_cast<char>(200);
+	panel += std::string(mapWidth - 2, static_cast<char>(205));
+	panel += static_cast<char>(188);
+
+	WriteConsoleOutputAttribute(hConsole, &std::vector<WORD>(mapWidth * panelHeight, Color::BG_BrightWhite | Color::Black).front(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
+	WriteConsoleOutputCharacterA(hConsole, panel.c_str(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
+}
+
+void TurboSnakeGame::PrintStats()
+{
+	auto offset = (mapWidth - 2) / players.size();
+
+	short x = 1;
+
+	for (const auto& player : players)
+	{
+		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+
+		std::string text;
+
+		text += turboSnakePlayer->sign;
+		text += " - ";
+		text += std::to_string(turboSnakePlayer->points);
+
+		WriteConsoleOutputCharacterA(hConsole, text.c_str(), text.size(), { x + 1, mapHeight + 1 }, &dwBytesWritten);
+
+		x += offset;
+	}
 }
 
 void TurboSnakeGame::GenerateNewBonusPoints()
 {
-	if (rand() % 100 > 1)
+	if (rand() % 100 > 90)
 	{
-		const auto randomX = rand() % gameWidth;
-		const auto randomY = rand() % gameHeight;
+		const auto randomX = rand() % mapWidth;
+		const auto randomY = rand() % mapHeight;
 
 		if (GetMapElement(randomX, randomY) == ' ')
 		{
@@ -89,12 +160,12 @@ void TurboSnakeGame::UpdatePlayersPosition()
 			break;
 		}
 
-		if (newX >= gameWidth)
-			newX = gameWidth - 1;
+		if (newX >= mapWidth)
+			newX = mapWidth - 1;
 		if (newX < 0)
 			newX = 0;
-		if (newY >= gameHeight)
-			newY = gameHeight - 1;
+		if (newY >= mapHeight)
+			newY = mapHeight - 1;
 		if (newY < 0)
 			newY = 0;
 
@@ -147,5 +218,6 @@ Game::State TurboSnakeGame::GetState()
 
 void TurboSnakeGame::Print()
 {
+	PrintStats();
 	Game::Print();
 }

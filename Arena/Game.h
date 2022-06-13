@@ -59,6 +59,11 @@ protected:
 
 	const int gameWidth;
 	const int gameHeight;
+
+	const int panelHeight = 5;
+	const int mapWidth;
+	const short mapHeight;
+
 	char* map;
 	WORD* colors;
 

@@ -11,9 +11,9 @@
 
 int main()
 {
-	int gameWidth = 120;              // [characters]
+	int gameWidth = 90;               // [characters]
 	int gameHeight = 40;              // [characters]
-	int singleFrameDurationTime = 20; // [ms]
+	int singleFrameDurationTime = 50; // [ms]
 
 	//------------------------------------------------------------------
 	// Remember to adjust console window to size gameWidth x gameHeight
@@ -24,8 +24,6 @@ int main()
 	game.AddPlayer<TurboSnakePlayerGreedy>('A');
 	game.AddPlayer<TurboSnakePlayerGreedy>('B');
 	game.AddPlayer<TurboSnakePlayerGreedy>('C');
-	game.AddPlayer<TurboSnakePlayerGreedy>('D');
-	game.AddPlayer<TurboSnakePlayerGreedy>('E');
 
 	game.Start();
 }

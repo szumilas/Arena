@@ -6,10 +6,10 @@
 #include <string>
 
 Game::Game(Strategy strategy, int duration, int width, int height)
-	: strategy(strategy), duration(duration), gameWidth(width), gameHeight(height)
+	: strategy(strategy), duration(duration), gameWidth(width), gameHeight(height), mapWidth(width), mapHeight(height - panelHeight)
 {
-	map = new char[gameWidth * gameHeight]();
-	colors = new WORD[gameWidth * gameHeight]();
+	map = new char[mapWidth * mapHeight]();
+	colors = new WORD[mapWidth * mapHeight]();
 
 	hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 	SetConsoleActiveScreenBuffer(hConsole);
@@ -23,6 +23,11 @@ Game::~Game()
 
 void Game::Start()
 {
+	if (!players.size())
+	{
+		std::terminate();
+	}
+	duration /= players.size();
 	srand(time(NULL));
 	Initialize();
 	MainLoop();
@@ -60,8 +65,8 @@ void Game::Update()
 
 void Game::Print()
 {
-	WriteConsoleOutputAttribute(hConsole, colors, gameWidth * gameHeight, { 0, 0 }, &dwBytesWritten);
-	WriteConsoleOutputCharacterA(hConsole, map, gameWidth * gameHeight, { 0, 0 }, &dwBytesWritten);
+	WriteConsoleOutputAttribute(hConsole, colors, mapWidth * mapHeight, { 0, 0 }, &dwBytesWritten);
+	WriteConsoleOutputCharacterA(hConsole, map, mapWidth * mapHeight, { 0, 0 }, &dwBytesWritten);
 }
 
 void Game::Move()
