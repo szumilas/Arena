@@ -76,7 +76,9 @@ void Game::GetKeyPressed()
 {
 	auto& keys = GetKeyMap();
 	for (auto& key : keys)
-		key.second = GetAsyncKeyState(key.first);
+	{
+		key.second = GetAsyncKeyState(key.first) & 0x8000;
+	}
 }
 
 std::map<int, bool>& Game::GetKeyMap()

@@ -44,7 +44,11 @@ void TurboSnakeGame::Initialize()
 
 void TurboSnakeGame::InitializeKeysMap()
 {
-	auto supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N' };
+	auto supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N',
+		static_cast<char>(VK_ADD), // +
+		static_cast<char>(VK_SUBTRACT) // -
+	};
+
 	for (auto key : supportedKeys)
 	{
 		keys.insert({key, false});
@@ -255,7 +259,7 @@ void TurboSnakeGame::UpdateUserInput()
 			PrintMenuText("Are you sure you want to restart the game? [Y/N]");
 
 			acceptAction = [&]() { this->RestartGame(); this->PrintMenuText(); };
-			denyAction = [&]() { this->PrintMenuText(); this->PrintMenuText(); };
+			denyAction = [&]() { this->PrintMenuText(); };
 		}
 		if (keys.at('P'))
 		{
@@ -269,7 +273,21 @@ void TurboSnakeGame::UpdateUserInput()
 			PrintMenuText("Are you sure you want to exit the game? [Y/N]");
 
 			acceptAction = [&]() { SetState(State::GameOver); };
-			denyAction = [&]() { this->PrintMenuText(); this->PrintMenuText(); };
+			denyAction = [&]() { this->PrintMenuText(); };
+		}
+		if (keys.at(VK_ADD))
+		{
+			PrintMenuText("Are you sure you want to increase speed of the game? [Y/N]");
+
+			acceptAction = [&]() { IncreaseGameSpeed(); this->PrintMenuText(); };
+			denyAction = [&]() { this->PrintMenuText(); };
+		}
+		if (keys.at(VK_SUBTRACT))
+		{
+			PrintMenuText("Are you sure you want to decrease speed of the game? [Y/N]");
+
+			acceptAction = [&]() { DecreaseGameSpeed(); this->PrintMenuText(); };
+			denyAction = [&]() { this->PrintMenuText(); };
 		}
 	}
 

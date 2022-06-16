@@ -57,6 +57,8 @@ protected:
 	inline void SetMapColor(int x, int y, int newColor) { colors[y * gameWidth + x] = newColor; }
 	virtual void Print();
 	inline void SetState(State newState) { state = newState; }
+	inline void IncreaseGameSpeed() { duration /= 1.1; }
+	inline void DecreaseGameSpeed() { duration *= 1.1; }
 
 protected:
 	std::list<std::unique_ptr<Player>> players;
@@ -77,7 +79,7 @@ protected:
 private:
 
 	Strategy strategy;
-	int duration;
+	float duration;
 	State state = State::Battle;
 
 	std::map<int, bool> keys;
