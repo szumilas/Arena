@@ -11,6 +11,8 @@
 
 void TurboSnakeGame::Initialize()
 {
+	InitializeKeysMap();
+
 	Printer::ShowConsoleCursor(hConsole, false);
 
 	memset(map, ' ', mapWidth * mapHeight - 1);
@@ -38,6 +40,15 @@ void TurboSnakeGame::Initialize()
 	}
 
 	PrintPanel();
+}
+
+void TurboSnakeGame::InitializeKeysMap()
+{
+	auto supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N' };
+	for (auto key : supportedKeys)
+	{
+		keys.insert({key, false});
+	}
 }
 
 void TurboSnakeGame::PrintPanel()
@@ -252,6 +263,13 @@ void TurboSnakeGame::UpdateUserInput()
 			SetState(State::Pause);
 
 			acceptAction = [&]() { SetState(State::Battle); this->PrintMenuText(); };
+		}
+		if (keys.at('E'))
+		{
+			PrintMenuText("Are you sure you want to exit the game? [Y/N]");
+
+			acceptAction = [&]() { SetState(State::GameOver); };
+			denyAction = [&]() { this->PrintMenuText(); this->PrintMenuText(); };
 		}
 	}
 

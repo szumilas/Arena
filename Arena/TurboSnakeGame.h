@@ -25,6 +25,7 @@ public:
 
 private:
 	virtual void Initialize();
+	void InitializeKeysMap();
 	void GenerateNewBonusPoints();
 	void UpdatePlayersPosition();
 	void CalculateCollisions();
@@ -39,5 +40,5 @@ private:
 
 	int defaultMapColor = BG_LightAqua;
 
-	std::map<int, bool> keys = { {'S', false}, {'P', false}, {'R', false} , {'Y', false} , {'N', false} };
+	std::map<int, bool> keys;
 };
