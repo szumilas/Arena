@@ -3,6 +3,7 @@
 #include "Player.h"
 
 #include <list>
+#include <map>
 #include <memory>
 #include <functional>
 #include <Windows.h>
@@ -19,8 +20,10 @@ public:
 
 	enum class State
 	{
+		GameOver = 0,
 		Battle,
-		GameOver,
+		Pause,
+		Restart,
 	};
 
 	Game(Strategy strategy, int duration, int width, int height);
@@ -38,8 +41,11 @@ private:
 	virtual void MainLoop();
 	virtual void Initialize();
 	virtual void Update();
+	virtual void UpdateUserInput();
 	virtual void Move();
-	virtual State GetState();
+	virtual void GetKeyPressed();
+	virtual std::map<int, bool>& GetKeyMap();
+	inline State GetState() { return state; }
 
 	void TurnBasedMove();
 	void RealTimeMove();
@@ -50,6 +56,7 @@ protected:
 	inline void SetMapElement(int x, int y, char value) { map[y * gameWidth + x] = value; }
 	inline void SetMapColor(int x, int y, int newColor) { colors[y * gameWidth + x] = newColor; }
 	virtual void Print();
+	inline void SetState(State newState) { state = newState; }
 
 protected:
 	std::list<std::unique_ptr<Player>> players;
@@ -71,4 +78,7 @@ private:
 
 	Strategy strategy;
 	int duration;
+	State state = State::Battle;
+
+	std::map<int, bool> keys;
 };

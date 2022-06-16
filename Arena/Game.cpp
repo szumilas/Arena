@@ -40,12 +40,26 @@ void Game::Initialize()
 
 void Game::MainLoop()
 {
-	while (GetState() == State::Battle)
+	while (state != State::GameOver)
 	{
 		auto t_start = std::chrono::high_resolution_clock::now();
-		Move();
-		Update();
-		Print();
+
+		switch (state)
+		{
+		case State::Battle:
+		{
+			GetKeyPressed();
+			Move();
+			Update();
+			Print();
+			break;
+		}
+		case State::Pause:
+		{
+			GetKeyPressed();
+			UpdateUserInput();
+		}
+		}
 		auto t_end = std::chrono::high_resolution_clock::now();
 
 		double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end - t_start).count();
@@ -58,7 +72,24 @@ void Game::MainLoop()
 	}
 }
 
+void Game::GetKeyPressed()
+{
+	auto& keys = GetKeyMap();
+	for (auto& key : keys)
+		key.second = GetAsyncKeyState(key.first);
+}
+
+std::map<int, bool>& Game::GetKeyMap()
+{
+	return keys;
+}
+
 void Game::Update()
+{
+
+}
+
+void Game::UpdateUserInput()
 {
 
 }
@@ -82,11 +113,6 @@ void Game::Move()
 	default:
 		break;
 	}
-}
-
-Game::State Game::GetState()
-{
-	return State::GameOver;
 }
 
 void Game::TurnBasedMove()

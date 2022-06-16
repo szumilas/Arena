@@ -18,8 +18,8 @@ public:
 
 	inline auto LocateBonusPoints() const { return &bonusPoints; }
 	virtual void Update();
+	virtual void UpdateUserInput();
 	virtual void Print();
-	Game::State GetState() final;
 
 	inline std::list<BonusPoint>& GetBonusPoints() { return bonusPoints; }
 
@@ -30,9 +30,14 @@ private:
 	void CalculateCollisions();
 	void PrintPanel();
 	void PrintStats();
+	void PrintMenuText(std::string menuText = "[P] Pause    [R] Restart    [E] Exit");
+	std::map<int, bool>& GetKeyMap() final;
+	void RestartGame();
 
 private:
 	std::list<BonusPoint> bonusPoints;
 
 	int defaultMapColor = BG_LightAqua;
+
+	std::map<int, bool> keys = { {'S', false}, {'P', false}, {'R', false} , {'Y', false} , {'N', false} };
 };

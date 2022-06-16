@@ -85,7 +85,12 @@ void TurboSnakeGame::PrintPanel()
 	WriteConsoleOutputAttribute(hConsole, &std::vector<WORD>(mapWidth * panelHeight, Color::BG_BrightWhite | Color::Black).front(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
 	WriteConsoleOutputCharacterA(hConsole, panel.c_str(), mapWidth * panelHeight, { 0, mapHeight }, &dwBytesWritten);
 
-	std::string menuText = "[P] Pause    [R] Restart    [E] Exit";
+	PrintMenuText();
+}
+
+void TurboSnakeGame::PrintMenuText(std::string menuText)
+{
+	menuText.resize(gameWidth - 4);
 	WriteConsoleOutputCharacterA(hConsole, menuText.c_str(), menuText.size(), { 2, mapHeight + 3 }, &dwBytesWritten);
 }
 
@@ -224,15 +229,83 @@ void TurboSnakeGame::Update()
 	UpdatePlayersPosition();
 	CalculateCollisions();
 	GenerateNewBonusPoints();
+	UpdateUserInput();
 }
 
-Game::State TurboSnakeGame::GetState()
+void TurboSnakeGame::UpdateUserInput()
 {
-	return Game::State::Battle;
+	static std::function<void()> acceptAction = nullptr;
+	static std::function<void()> denyAction = nullptr;
+
+	if (acceptAction == nullptr && denyAction == nullptr)
+	{
+		if (keys.at('R'))
+		{
+			PrintMenuText("Are you sure you want to restart the game? [Y/N]");
+
+			acceptAction = [&]() { this->RestartGame(); this->PrintMenuText(); };
+			denyAction = [&]() { this->PrintMenuText(); this->PrintMenuText(); };
+		}
+		if (keys.at('P'))
+		{
+			PrintMenuText("Game paused. Resume? [Y]");
+			SetState(State::Pause);
+
+			acceptAction = [&]() { SetState(State::Battle); this->PrintMenuText(); };
+		}
+	}
+
+	if (keys.at('Y'))
+	{
+		if (acceptAction != nullptr)
+		{
+			acceptAction();
+		}
+		denyAction = nullptr;
+		acceptAction = nullptr;
+	}
+	if (keys.at('N'))
+	{
+		if (denyAction != nullptr)
+		{
+			denyAction();
+		}
+		denyAction = nullptr;
+		acceptAction = nullptr;
+	}
+}
+
+void TurboSnakeGame::RestartGame()
+{
+	memset(map, ' ', mapWidth * mapHeight - 1);
+
+	for (int q = 0; q < mapWidth * mapHeight; q++)
+	{
+		colors[q] = defaultMapColor;
+	}
+
+	for (auto& player : players)
+	{
+		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+
+		const auto randomX = rand() % mapWidth;
+		const auto randomY = rand() % mapHeight;
+
+		turboSnakePlayer->SetPosition(randomX, randomY);
+		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
+		SetMapColor(randomX, randomY, Color::Black | Color::BG_LightYellow);
+
+		turboSnakePlayer->points = 0;
+	}
 }
 
 void TurboSnakeGame::Print()
 {
 	PrintStats();
 	Game::Print();
+}
+
+std::map<int, bool>& TurboSnakeGame::GetKeyMap()
+{
+	return keys;
 }
