@@ -59,8 +59,8 @@ protected:
 	virtual void Print();
 	inline void SetState(State newState) { state = newState; }
 	inline State GetState() { return state; }
-	inline void IncreaseGameSpeed() { duration /= 1.1; }
-	inline void DecreaseGameSpeed() { duration *= 1.1; }
+	inline void IncreaseGameSpeed() { duration /= 1.1f; }
+	inline void DecreaseGameSpeed() { duration *= 1.1f; }
 
 protected:
 	std::list<std::unique_ptr<Player>> players;

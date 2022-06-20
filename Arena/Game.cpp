@@ -28,7 +28,7 @@ void Game::Start()
 		exit(-1);
 	}
 	duration /= players.size();
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(nullptr)));
 	Initialize();
 	MainLoop();
 }
@@ -72,7 +72,7 @@ void Game::MainLoop()
 
 		if (duration > elapsed_time_ms && state != State::Simulation)
 		{
-			Sleep(duration - elapsed_time_ms);
+			Sleep(static_cast<DWORD>(duration - elapsed_time_ms));
 		}
 		
 		SetConsoleTitle(std::to_wstring(static_cast<int>(1000.0 / elapsed_time_ms)).c_str());

@@ -55,7 +55,7 @@ public:
 		{
 			DWORD dwBytesWritten = 0;
 
-			int startX = (consoleWidth - line.size()) / 2;
+			short startX = (consoleWidth - line.size()) / 2;
 
 			if (startX < 0)
 				startX = 0;

@@ -109,7 +109,7 @@ void TurboFrogGame::PrintPanel()
 void TurboFrogGame::PrintMenuText(std::string menuText)
 {
 	menuText.resize(gameWidth - 4);
-	WriteConsoleOutputCharacterA(hConsole, menuText.c_str(), menuText.size(), { 2, mapHeight + 3 }, &dwBytesWritten);
+	WriteConsoleOutputCharacterA(hConsole, menuText.c_str(), static_cast<DWORD>(menuText.size()), { 2, mapHeight + 3 }, &dwBytesWritten);
 }
 
 void TurboFrogGame::PrintIntro()
@@ -167,7 +167,7 @@ void TurboFrogGame::PrintIntro()
 
 void TurboFrogGame::PrintStats()
 {
-	auto offset = (mapWidth - 2) / players.size();
+	short offset = (mapWidth - 2) / players.size();
 
 	short x = 1;
 
@@ -188,7 +188,7 @@ void TurboFrogGame::PrintStats()
 		text += "] ";
 		text += turboFrogPlayer->teamName.substr(0, offset - 14);
 
-		WriteConsoleOutputCharacterA(hConsole, text.c_str(), text.size(), { x + 1, mapHeight + 1 }, &dwBytesWritten);
+		WriteConsoleOutputCharacterA(hConsole, text.c_str(), static_cast<DWORD>(text.size()), { x + 1, mapHeight + 1 }, &dwBytesWritten);
 
 		x += offset;
 	}
