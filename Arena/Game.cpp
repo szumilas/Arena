@@ -46,6 +46,11 @@ void Game::MainLoop()
 
 		switch (state)
 		{
+		case State::Intro:
+			Print();
+			GetKeyPressed();
+			UpdateUserInput();
+			break;
 		case State::Battle:
 		case State::Simulation:
 		{

@@ -21,6 +21,6 @@ void Printer::ClearBuffer(HANDLE hConsole, int x, int y, int size)
 {
 	DWORD dwBytesWritten = 0;
 
-	WriteConsoleOutputAttribute(hConsole, &std::vector<WORD>(size, Color::BG_Black).front(), size, { static_cast<short>(x), static_cast<short>(y) }, &dwBytesWritten);
+	WriteConsoleOutputAttribute(hConsole, &std::vector<WORD>(size, Color::BG_Black | Color::BrightWhite).front(), size, {static_cast<short>(x), static_cast<short>(y)}, &dwBytesWritten);
 	WriteConsoleOutputCharacterA(hConsole, &std::vector<char>(size, ' ').front(), size, { static_cast<short>(x), static_cast<short>(y) }, &dwBytesWritten);
 }

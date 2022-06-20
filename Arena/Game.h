@@ -25,6 +25,7 @@ public:
 		Pause,
 		Restart,
 		Simulation,
+		Intro,
 	};
 
 	Game(Strategy strategy, int width, int height);
@@ -81,7 +82,7 @@ private:
 
 	Strategy strategy;
 	float duration = 50;
-	State state = State::Battle;
+	State state = State::Intro;
 
 	std::map<int, bool> keys;
 };

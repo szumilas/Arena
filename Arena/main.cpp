@@ -12,7 +12,7 @@
 int main()
 {
 	int gameWidth = 90;               // [characters]
-	int gameHeight = 40;              // [characters]
+	int gameHeight = 50;              // [characters]
 
 	//------------------------------------------------------------------
 	// Remember to adjust console window to size gameWidth x gameHeight

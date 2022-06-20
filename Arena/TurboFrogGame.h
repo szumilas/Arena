@@ -32,6 +32,7 @@ private:
 	void CalculateCollisions();
 	void PrintPanel();
 	void PrintStats();
+	void PrintIntro();
 	void PrintMenuText(std::string menuText = "[P] Pause [R] Restart [E] Exit [+] Speed++ [-] Speed-- [S] Simulation");
 	std::map<int, bool>& GetKeyMap() final;
 	void RestartGame();
