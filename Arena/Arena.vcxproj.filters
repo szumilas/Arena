@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="TurboSnake">
+    <Filter Include="TurboFrog">
       <UniqueIdentifier>{e3e68e59-54cc-46a0-9942-1daaf9f22388}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -27,20 +27,20 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TurboSnakeGame.cpp">
-      <Filter>TurboSnake</Filter>
+    <ClCompile Include="TurboFrogGame.cpp">
+      <Filter>TurboFrog</Filter>
     </ClCompile>
-    <ClCompile Include="TurboSnakePlayer.cpp">
-      <Filter>TurboSnake</Filter>
+    <ClCompile Include="TurboFrogPlayer.cpp">
+      <Filter>TurboFrog</Filter>
     </ClCompile>
-    <ClCompile Include="TurboSnakePlayerRandom.cpp">
-      <Filter>TurboSnake</Filter>
+    <ClCompile Include="TurboFrogPlayerRandom.cpp">
+      <Filter>TurboFrog</Filter>
     </ClCompile>
     <ClCompile Include="Printer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TurboSnakePlayerGreedy.cpp">
-      <Filter>TurboSnake</Filter>
+    <ClCompile Include="TurboFrogPlayerGreedy.cpp">
+      <Filter>TurboFrog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,20 +50,20 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TurboSnakeGame.h">
-      <Filter>TurboSnake</Filter>
+    <ClInclude Include="TurboFrogGame.h">
+      <Filter>TurboFrog</Filter>
     </ClInclude>
-    <ClInclude Include="TurboSnakePlayer.h">
-      <Filter>TurboSnake</Filter>
+    <ClInclude Include="TurboFrogPlayer.h">
+      <Filter>TurboFrog</Filter>
     </ClInclude>
-    <ClInclude Include="TurboSnakePlayerRandom.h">
-      <Filter>TurboSnake</Filter>
+    <ClInclude Include="TurboFrogPlayerRandom.h">
+      <Filter>TurboFrog</Filter>
     </ClInclude>
     <ClInclude Include="Printer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TurboSnakePlayerGreedy.h">
-      <Filter>TurboSnake</Filter>
+    <ClInclude Include="TurboFrogPlayerGreedy.h">
+      <Filter>TurboFrog</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

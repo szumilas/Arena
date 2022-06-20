@@ -10,11 +10,11 @@ struct BonusPoint
 	int value{};
 };
 
-class TurboSnakeGame : public Game
+class TurboFrogGame : public Game
 {
 public:
 	template<typename ...Args>
-	TurboSnakeGame(const Args&... args) : Game(args...) {}
+	TurboFrogGame(const Args&... args) : Game(args...) {}
 
 	inline auto LocateBonusPoints() const { return &bonusPoints; }
 	virtual void Update();

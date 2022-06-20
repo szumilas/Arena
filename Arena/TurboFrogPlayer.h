@@ -1,19 +1,19 @@
 #pragma once
 
 #include "Player.h"
-#include "TurboSnakeGame.h"
+#include "TurboFrogGame.h"
 
-class TurboSnakePlayer : public Player
+class TurboFrogPlayer : public Player
 {
-	friend class TurboSnakeGame;
+	friend class TurboFrogGame;
 
 public:
-	TurboSnakePlayer(std::string teamName) : teamName(teamName) {}
+	TurboFrogPlayer(std::string teamName) : teamName(teamName) {}
 
 protected:
 
 	int nextMove = 0;
-	TurboSnakeGame* game = nullptr;
+	TurboFrogGame* game = nullptr;
 
 	int x{};
 	int y{};
@@ -21,7 +21,7 @@ protected:
 private:
 	inline void SetPosition(int newx, int newy) { x = newx; y = newy; }
 	inline void AddPoints(int point) { points += point; }
-	void Initialize(TurboSnakeGame*, char);
+	void Initialize(TurboFrogGame*, char);
 	void ResetNextMove() { nextMove = 0;}
 
 	int points = 0;

@@ -144,20 +144,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Printer.cpp" />
-    <ClCompile Include="TurboSnakeGame.cpp" />
-    <ClCompile Include="TurboSnakePlayer.cpp" />
-    <ClCompile Include="TurboSnakePlayerGreedy.cpp" />
-    <ClCompile Include="TurboSnakePlayerRandom.cpp" />
+    <ClCompile Include="TurboFrogGame.cpp" />
+    <ClCompile Include="TurboFrogPlayer.cpp" />
+    <ClCompile Include="TurboFrogPlayerGreedy.cpp" />
+    <ClCompile Include="TurboFrogPlayerRandom.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Printer.h" />
-    <ClInclude Include="TurboSnakeGame.h" />
-    <ClInclude Include="TurboSnakePlayer.h" />
-    <ClInclude Include="TurboSnakePlayerGreedy.h" />
-    <ClInclude Include="TurboSnakePlayerRandom.h" />
+    <ClInclude Include="TurboFrogGame.h" />
+    <ClInclude Include="TurboFrogPlayer.h" />
+    <ClInclude Include="TurboFrogPlayerGreedy.h" />
+    <ClInclude Include="TurboFrogPlayerRandom.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

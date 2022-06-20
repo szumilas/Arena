@@ -1,6 +1,6 @@
-#include "TurboSnakePlayerGreedy.h"
+#include "TurboFrogPlayerGreedy.h"
 
-void TurboSnakePlayerGreedy::CalculateNextMove()
+void TurboFrogPlayerGreedy::CalculateNextMove()
 {
 	int destinationX = 0;
 	int destinationY = 0;

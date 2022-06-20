@@ -1,5 +1,5 @@
-#include "TurboSnakeGame.h"
-#include "TurboSnakePlayer.h"
+#include "TurboFrogGame.h"
+#include "TurboFrogPlayer.h"
 
 #include "Printer.h"
 
@@ -9,7 +9,7 @@
 #include <sstream>
 #include <iomanip>
 
-void TurboSnakeGame::Initialize()
+void TurboFrogGame::Initialize()
 {
 	InitializeKeysMap();
 
@@ -25,15 +25,15 @@ void TurboSnakeGame::Initialize()
 	char sign = 'A';
 	for (auto& player : players)
 	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
-		turboSnakePlayer->Initialize(this, sign);
+		turboFrogPlayer->Initialize(this, sign);
 
 		const auto randomX = rand() % mapWidth;
 		const auto randomY = rand() % mapHeight;
 
-		turboSnakePlayer->SetPosition(randomX, randomY);
-		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
+		turboFrogPlayer->SetPosition(randomX, randomY);
+		SetMapElement(randomX, randomY, turboFrogPlayer->sign);
 		SetMapColor(randomX, randomY, Color::Black | Color::BG_LightYellow);
 
 		sign++;
@@ -42,7 +42,7 @@ void TurboSnakeGame::Initialize()
 	PrintPanel();
 }
 
-void TurboSnakeGame::InitializeKeysMap()
+void TurboFrogGame::InitializeKeysMap()
 {
 	auto supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N',
 		static_cast<char>(VK_ADD), // +
@@ -55,7 +55,7 @@ void TurboSnakeGame::InitializeKeysMap()
 	}
 }
 
-void TurboSnakeGame::PrintPanel()
+void TurboFrogGame::PrintPanel()
 {
 	std::string panel;
 
@@ -103,13 +103,13 @@ void TurboSnakeGame::PrintPanel()
 	PrintMenuText();
 }
 
-void TurboSnakeGame::PrintMenuText(std::string menuText)
+void TurboFrogGame::PrintMenuText(std::string menuText)
 {
 	menuText.resize(gameWidth - 4);
 	WriteConsoleOutputCharacterA(hConsole, menuText.c_str(), menuText.size(), { 2, mapHeight + 3 }, &dwBytesWritten);
 }
 
-void TurboSnakeGame::PrintStats()
+void TurboFrogGame::PrintStats()
 {
 	auto offset = (mapWidth - 2) / players.size();
 
@@ -117,20 +117,20 @@ void TurboSnakeGame::PrintStats()
 
 	for (const auto& player : players)
 	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
 		std::string text;
 
-		text += turboSnakePlayer->sign;
+		text += turboFrogPlayer->sign;
 		text += " - [";
 
 		std::ostringstream ss;
-		ss << std::setw(3) << std::setfill(' ') << turboSnakePlayer->points;
+		ss << std::setw(3) << std::setfill(' ') << turboFrogPlayer->points;
 		std::string points(ss.str());
 
 		text += points;
 		text += "] ";
-		text += turboSnakePlayer->teamName.substr(0, offset - 12);
+		text += turboFrogPlayer->teamName.substr(0, offset - 12);
 
 		WriteConsoleOutputCharacterA(hConsole, text.c_str(), text.size(), { x + 1, mapHeight + 1 }, &dwBytesWritten);
 
@@ -138,7 +138,7 @@ void TurboSnakeGame::PrintStats()
 	}
 }
 
-void TurboSnakeGame::GenerateNewBonusPoints()
+void TurboFrogGame::GenerateNewBonusPoints()
 {
 	if (rand() % 100 > 90)
 	{
@@ -170,16 +170,16 @@ void TurboSnakeGame::GenerateNewBonusPoints()
 	}
 }
 
-void TurboSnakeGame::UpdatePlayersPosition()
+void TurboFrogGame::UpdatePlayersPosition()
 {
 	for (auto& player : players)
 	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
-		int newX = turboSnakePlayer->x;
-		int newY = turboSnakePlayer->y;
+		int newX = turboFrogPlayer->x;
+		int newY = turboFrogPlayer->y;
 
-		switch (turboSnakePlayer->nextMove)
+		switch (turboFrogPlayer->nextMove)
 		{
 		case 1:
 			newX++;
@@ -207,39 +207,39 @@ void TurboSnakeGame::UpdatePlayersPosition()
 		if (auto element = GetMapElement(newX, newY);
 			'1' <= element && element <= '9' || element == ' ')
 		{
-			SetMapElement(turboSnakePlayer->x, turboSnakePlayer->y, ' ');
-			SetMapColor(turboSnakePlayer->x, turboSnakePlayer->y, defaultMapColor);
+			SetMapElement(turboFrogPlayer->x, turboFrogPlayer->y, ' ');
+			SetMapColor(turboFrogPlayer->x, turboFrogPlayer->y, defaultMapColor);
 
-			SetMapElement(newX, newY, turboSnakePlayer->sign);
+			SetMapElement(newX, newY, turboFrogPlayer->sign);
 			SetMapColor(newX, newY, Color::Black | Color::BG_LightYellow);
 
-			turboSnakePlayer->x = newX;
-			turboSnakePlayer->y = newY;
+			turboFrogPlayer->x = newX;
+			turboFrogPlayer->y = newY;
 		}
 
 	}
 }
 
-void TurboSnakeGame::CalculateCollisions()
+void TurboFrogGame::CalculateCollisions()
 {
 	for (auto& player : players)
 	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
 		auto pointTaken = std::find_if(bonusPoints.begin(), bonusPoints.end(), [&](const auto& point)
 			{
-				return turboSnakePlayer->x == point.x && turboSnakePlayer->y == point.y;
+				return turboFrogPlayer->x == point.x && turboFrogPlayer->y == point.y;
 			});
 
 		if (pointTaken != bonusPoints.end())
 		{
-			turboSnakePlayer->AddPoints(pointTaken->value);
+			turboFrogPlayer->AddPoints(pointTaken->value);
 			bonusPoints.erase(pointTaken);
 		}
 	}
 }
 
-void TurboSnakeGame::Update()
+void TurboFrogGame::Update()
 {
 	UpdatePlayersPosition();
 	CalculateCollisions();
@@ -247,7 +247,7 @@ void TurboSnakeGame::Update()
 	UpdateUserInput();
 }
 
-void TurboSnakeGame::UpdateUserInput()
+void TurboFrogGame::UpdateUserInput()
 {
 	static std::function<void()> acceptAction = nullptr;
 	static std::function<void()> denyAction = nullptr;
@@ -311,7 +311,7 @@ void TurboSnakeGame::UpdateUserInput()
 	}
 }
 
-void TurboSnakeGame::RestartGame()
+void TurboFrogGame::RestartGame()
 {
 	memset(map, ' ', mapWidth * mapHeight - 1);
 
@@ -322,26 +322,26 @@ void TurboSnakeGame::RestartGame()
 
 	for (auto& player : players)
 	{
-		auto turboSnakePlayer = dynamic_cast<TurboSnakePlayer*>(player.get());
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
 		const auto randomX = rand() % mapWidth;
 		const auto randomY = rand() % mapHeight;
 
-		turboSnakePlayer->SetPosition(randomX, randomY);
-		SetMapElement(randomX, randomY, turboSnakePlayer->sign);
+		turboFrogPlayer->SetPosition(randomX, randomY);
+		SetMapElement(randomX, randomY, turboFrogPlayer->sign);
 		SetMapColor(randomX, randomY, Color::Black | Color::BG_LightYellow);
 
-		turboSnakePlayer->points = 0;
+		turboFrogPlayer->points = 0;
 	}
 }
 
-void TurboSnakeGame::Print()
+void TurboFrogGame::Print()
 {
 	PrintStats();
 	Game::Print();
 }
 
-std::map<int, bool>& TurboSnakeGame::GetKeyMap()
+std::map<int, bool>& TurboFrogGame::GetKeyMap()
 {
 	return keys;
 }
