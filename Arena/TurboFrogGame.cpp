@@ -44,7 +44,7 @@ void TurboFrogGame::Initialize()
 
 void TurboFrogGame::InitializeKeysMap()
 {
-	std::initializer_list<int> supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N', '-', '=',
+	std::initializer_list<int> supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N', '-', '=', 'S',
 		VK_ADD, // +
 		VK_SUBTRACT, // -
 		VK_SHIFT, // shift
@@ -128,12 +128,12 @@ void TurboFrogGame::PrintStats()
 		text += " - [";
 
 		std::ostringstream ss;
-		ss << std::setw(3) << std::setfill(' ') << turboFrogPlayer->points;
+		ss << std::setw(4) << std::setfill(' ') << turboFrogPlayer->points;
 		std::string points(ss.str());
 
 		text += points;
 		text += "] ";
-		text += turboFrogPlayer->teamName.substr(0, offset - 12);
+		text += turboFrogPlayer->teamName.substr(0, offset - 14);
 
 		WriteConsoleOutputCharacterA(hConsole, text.c_str(), text.size(), { x + 1, mapHeight + 1 }, &dwBytesWritten);
 
@@ -248,13 +248,29 @@ void TurboFrogGame::Update()
 	CalculateCollisions();
 	GenerateNewBonusPoints();
 	UpdateUserInput();
+	CheckWhoWon();
+}
+
+void TurboFrogGame::CheckWhoWon()
+{
+	for (auto& player : players)
+	{
+		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
+
+		if (turboFrogPlayer->points > 10'000)
+		{
+			SetState(State::Pause);
+
+			PrintMenuText("Player " + turboFrogPlayer->teamName + " won! Would you like to restart the game? [Y/N]");
+
+			acceptAction = [&]() { this->RestartGame(); SetState(State::Battle); this->PrintMenuText(); };
+			denyAction = [&]() { SetState(State::GameOver); };
+		}
+	}
 }
 
 void TurboFrogGame::UpdateUserInput()
 {
-	static std::function<void()> acceptAction = nullptr;
-	static std::function<void()> denyAction = nullptr;
-
 	if (acceptAction == nullptr && denyAction == nullptr)
 	{
 		if (keys.at('R'))
@@ -277,6 +293,23 @@ void TurboFrogGame::UpdateUserInput()
 
 			acceptAction = [&]() { SetState(State::GameOver); };
 			denyAction = [&]() { this->PrintMenuText(); };
+		}
+		if (keys.at('S'))
+		{
+			if (GetState() == State::Simulation)
+			{
+				PrintMenuText("Are you sure you want to turn off simulation mode? [Y/N]");
+
+				acceptAction = [&]() { SetState(State::Battle); this->PrintMenuText(); };
+				denyAction = [&]() { this->PrintMenuText(); };
+			}
+			else
+			{
+				PrintMenuText("Are you sure you want to use simulation mode? [Y/N]");
+
+				acceptAction = [&]() { SetState(State::Simulation); Printer::ClearBuffer(hConsole, 0, 0, mapWidth * mapHeight); this->PrintMenuText(); };
+				denyAction = [&]() { this->PrintMenuText(); };
+			}
 		}
 		if (keys.at(VK_ADD) || keys.at(VK_SHIFT) && keys.at(VK_OEM_PLUS) )
 		{
@@ -341,7 +374,8 @@ void TurboFrogGame::RestartGame()
 void TurboFrogGame::Print()
 {
 	PrintStats();
-	Game::Print();
+	if(GetState() != State::Simulation)
+		Game::Print();
 }
 
 std::map<int, bool>& TurboFrogGame::GetKeyMap()

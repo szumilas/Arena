@@ -5,8 +5,8 @@
 #include <Windows.h>
 #include <string>
 
-Game::Game(Strategy strategy, int duration, int width, int height)
-	: strategy(strategy), duration(duration), gameWidth(width), gameHeight(height), mapWidth(width), mapHeight(height - panelHeight)
+Game::Game(Strategy strategy, int width, int height)
+	: strategy(strategy), gameWidth(width), gameHeight(height), mapWidth(width), mapHeight(height - panelHeight)
 {
 	map = new char[mapWidth * mapHeight]();
 	colors = new WORD[mapWidth * mapHeight]();
@@ -47,6 +47,7 @@ void Game::MainLoop()
 		switch (state)
 		{
 		case State::Battle:
+		case State::Simulation:
 		{
 			GetKeyPressed();
 			Move();
@@ -64,11 +65,12 @@ void Game::MainLoop()
 
 		double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end - t_start).count();
 
-		if (duration > elapsed_time_ms)
+		if (duration > elapsed_time_ms && state != State::Simulation)
 		{
 			Sleep(duration - elapsed_time_ms);
-			SetConsoleTitle(std::to_wstring(static_cast<int>(1000.0 / elapsed_time_ms)).c_str());
 		}
+		
+		SetConsoleTitle(std::to_wstring(static_cast<int>(1000.0 / elapsed_time_ms)).c_str());
 	}
 }
 

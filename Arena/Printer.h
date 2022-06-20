@@ -44,4 +44,5 @@ class Printer
 public:
 	static void Gotoxy(HANDLE hConsole, int x, int y);
 	static void ShowConsoleCursor(HANDLE hConsole, bool showFlag);
+	static void ClearBuffer(HANDLE hConsole, int x, int y, int size);
 };

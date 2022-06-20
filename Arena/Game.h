@@ -24,9 +24,10 @@ public:
 		Battle,
 		Pause,
 		Restart,
+		Simulation,
 	};
 
-	Game(Strategy strategy, int duration, int width, int height);
+	Game(Strategy strategy, int width, int height);
 	virtual ~Game();
 
 	virtual void Start();
@@ -45,7 +46,6 @@ private:
 	virtual void Move();
 	virtual void GetKeyPressed();
 	virtual std::map<int, bool>& GetKeyMap();
-	inline State GetState() { return state; }
 
 	void TurnBasedMove();
 	void RealTimeMove();
@@ -57,6 +57,7 @@ protected:
 	inline void SetMapColor(int x, int y, int newColor) { colors[y * gameWidth + x] = newColor; }
 	virtual void Print();
 	inline void SetState(State newState) { state = newState; }
+	inline State GetState() { return state; }
 	inline void IncreaseGameSpeed() { duration /= 1.1; }
 	inline void DecreaseGameSpeed() { duration *= 1.1; }
 
@@ -79,7 +80,7 @@ protected:
 private:
 
 	Strategy strategy;
-	float duration;
+	float duration = 50;
 	State state = State::Battle;
 
 	std::map<int, bool> keys;
