@@ -18,16 +18,6 @@ public:
 		RealTime,
 	};
 
-	enum class State
-	{
-		GameOver = 0,
-		Battle,
-		Pause,
-		Restart,
-		Simulation,
-		Intro,
-	};
-
 	Game(Strategy strategy, int width, int height);
 	virtual ~Game();
 
@@ -53,14 +43,24 @@ private:
 
 protected:
 
+	enum class State
+	{
+		GameOver = 0,
+		Battle,
+		Pause,
+		Restart,
+		Simulation,
+		Intro,
+	};
+
 	inline char& GetMapElement(int x, int y) { return map[y * gameWidth + x]; }
 	inline void SetMapElement(int x, int y, char value) { map[y * gameWidth + x] = value; }
 	inline void SetMapColor(int x, int y, int newColor) { colors[y * gameWidth + x] = newColor; }
 	virtual void Print();
 	inline void SetState(State newState) { state = newState; }
 	inline State GetState() { return state; }
-	inline void IncreaseGameSpeed() { duration /= 1.1; }
-	inline void DecreaseGameSpeed() { duration *= 1.1; }
+	inline void IncreaseGameSpeed() { duration /= 1.1f; }
+	inline void DecreaseGameSpeed() { duration *= 1.1f; }
 
 protected:
 	std::list<std::unique_ptr<Player>> players;
