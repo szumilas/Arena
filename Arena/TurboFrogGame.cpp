@@ -44,9 +44,12 @@ void TurboFrogGame::Initialize()
 
 void TurboFrogGame::InitializeKeysMap()
 {
-	auto supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N',
-		static_cast<char>(VK_ADD), // +
-		static_cast<char>(VK_SUBTRACT) // -
+	std::initializer_list<int> supportedKeys = { 'E', 'S', 'P', 'R', 'Y', 'N', '-', '=',
+		VK_ADD, // +
+		VK_SUBTRACT, // -
+		VK_SHIFT, // shift
+		VK_OEM_PLUS, // plus
+		VK_OEM_MINUS, // minus
 	};
 
 	for (auto key : supportedKeys)
@@ -275,14 +278,14 @@ void TurboFrogGame::UpdateUserInput()
 			acceptAction = [&]() { SetState(State::GameOver); };
 			denyAction = [&]() { this->PrintMenuText(); };
 		}
-		if (keys.at(VK_ADD))
+		if (keys.at(VK_ADD) || keys.at(VK_SHIFT) && keys.at(VK_OEM_PLUS) )
 		{
 			PrintMenuText("Are you sure you want to increase speed of the game? [Y/N]");
 
 			acceptAction = [&]() { IncreaseGameSpeed(); this->PrintMenuText(); };
 			denyAction = [&]() { this->PrintMenuText(); };
 		}
-		if (keys.at(VK_SUBTRACT))
+		if (keys.at(VK_SUBTRACT) || !keys.at(VK_SHIFT) && keys.at(VK_OEM_MINUS))
 		{
 			PrintMenuText("Are you sure you want to decrease speed of the game? [Y/N]");
 
