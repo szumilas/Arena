@@ -19,7 +19,7 @@ void TurboFrogPlayerShy::CalculateNextMove()
 		return abs(myX - pointX) + abs(myY - pointY);
 	};
 
-	auto oponents = TurboFrogPlayerShy::GetOponentsPositions(this);
+	auto oponents = GetOponentsPositions();
 
 	for (const auto& bonusPoint : GetBonusPoints())
 	{

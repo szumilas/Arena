@@ -17,7 +17,7 @@ public:
 	};
 
 	inline std::list<BonusPoint>& GetBonusPoints() { return game->GetBonusPoints(); }
-	std::list<Position> GetOponentsPositions(TurboFrogPlayer* myself);
+	std::list<Position> GetOponentsPositions();
 	char GetMapElement(int x, int y) { return game->GetMapElement(x, y); }
 	inline int GetMyX() { return x; }
 	inline int GetMyY() { return y; }

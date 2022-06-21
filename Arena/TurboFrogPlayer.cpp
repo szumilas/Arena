@@ -6,7 +6,7 @@ void TurboFrogPlayer::Initialize(TurboFrogGame* TurboFrog, char newSign)
 	sign = newSign;
 }
 
-std::list<TurboFrogPlayer::Position> TurboFrogPlayer::GetOponentsPositions(TurboFrogPlayer* myself)
+std::list<TurboFrogPlayer::Position> TurboFrogPlayer::GetOponentsPositions()
 {
 	std::list<Position> positions;
 
@@ -14,7 +14,7 @@ std::list<TurboFrogPlayer::Position> TurboFrogPlayer::GetOponentsPositions(Turbo
 	{
 		auto turboFrogPlayer = dynamic_cast<TurboFrogPlayer*>(player.get());
 
-		if (myself != turboFrogPlayer)
+		if (this != turboFrogPlayer)
 		{
 			positions.push_back({ turboFrogPlayer->x, turboFrogPlayer->y });
 		}
