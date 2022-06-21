@@ -53,7 +53,7 @@ protected:
 		Intro,
 	};
 
-	inline char& GetMapElement(int x, int y) { return map[y * gameWidth + x]; }
+	inline char GetMapElement(int x, int y) { if (x >= mapWidth || x < 0 || y >= mapHeight || y < 0) return 0; else return map[y * gameWidth + x]; }
 	inline void SetMapElement(int x, int y, char value) { map[y * gameWidth + x] = value; }
 	inline void SetMapColor(int x, int y, int newColor) { colors[y * gameWidth + x] = newColor; }
 	virtual void Print();

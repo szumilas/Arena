@@ -42,6 +42,15 @@
     <ClCompile Include="TurboFrogPlayerGreedy.cpp">
       <Filter>TurboFrog</Filter>
     </ClCompile>
+    <ClCompile Include="TurboFrogPlayerShy.cpp">
+      <Filter>TurboFrog</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboFrogPlayerBigFish.cpp">
+      <Filter>TurboFrog</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboFrogPlayerBigFishSmart.cpp">
+      <Filter>TurboFrog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -63,6 +72,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TurboFrogPlayerGreedy.h">
+      <Filter>TurboFrog</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboFrogPlayerShy.h">
+      <Filter>TurboFrog</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboFrogPlayerBigFish.h">
+      <Filter>TurboFrog</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboFrogPlayerBigFishSmart.h">
       <Filter>TurboFrog</Filter>
     </ClInclude>
   </ItemGroup>

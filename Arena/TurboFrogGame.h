@@ -16,13 +16,14 @@ public:
 	template<typename ...Args>
 	TurboFrogGame(const Args&... args) : Game(args...) {}
 
-	inline auto LocateBonusPoints() const { return &bonusPoints; }
 	void Update();
 	void CheckWhoWon();
 	void UpdateUserInput();
 	void Print();
 
 	inline std::list<BonusPoint>& GetBonusPoints() { return bonusPoints; }
+	inline std::list<std::unique_ptr<Player>>& GetPlayers() { return players; }
+	inline char GetMapElement(int x, int y) { return Game::GetMapElement(x, y); }
 
 private:
 	virtual void Initialize();

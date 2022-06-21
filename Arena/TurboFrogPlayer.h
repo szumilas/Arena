@@ -10,13 +10,21 @@ class TurboFrogPlayer : public Player
 public:
 	TurboFrogPlayer(std::string teamName) : teamName(teamName) {}
 
+	struct Position
+	{
+		int x;
+		int y;
+	};
+
+	inline std::list<BonusPoint>& GetBonusPoints() { return game->GetBonusPoints(); }
+	std::list<Position> GetOponentsPositions(TurboFrogPlayer* myself);
+	char GetMapElement(int x, int y) { return game->GetMapElement(x, y); }
+	inline int GetMyX() { return x; }
+	inline int GetMyY() { return y; }
+
 protected:
 
 	int nextMove = 0;
-	TurboFrogGame* game = nullptr;
-
-	int x{};
-	int y{};
 
 private:
 	inline void SetPosition(int newx, int newy) { x = newx; y = newy; }
@@ -26,6 +34,11 @@ private:
 
 	int points = 0;
 
+	int x{};
+	int y{};
+
 	char sign;
 	std::string teamName;
+
+	TurboFrogGame* game = nullptr;
 };

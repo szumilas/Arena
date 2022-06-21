@@ -146,20 +146,26 @@
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="TurboFrogGame.cpp" />
     <ClCompile Include="TurboFrogPlayer.cpp" />
+    <ClCompile Include="TurboFrogPlayerBigFish.cpp" />
+    <ClCompile Include="TurboFrogPlayerBigFishSmart.cpp" />
     <ClCompile Include="TurboFrogPlayerGreedy.cpp" />
     <ClCompile Include="TurboFrogPlayerRandom.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TurboFrogPlayerShy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Printer.h" />
     <ClInclude Include="TurboFrogGame.h" />
     <ClInclude Include="TurboFrogPlayer.h" />
+    <ClInclude Include="TurboFrogPlayerBigFish.h" />
+    <ClInclude Include="TurboFrogPlayerBigFishSmart.h" />
     <ClInclude Include="TurboFrogPlayerGreedy.h" />
     <ClInclude Include="TurboFrogPlayerRandom.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="TurboFrogPlayerShy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

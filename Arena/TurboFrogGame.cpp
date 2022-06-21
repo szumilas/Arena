@@ -184,6 +184,9 @@ void TurboFrogGame::PrintStats()
 		ss << std::setw(4) << std::setfill(' ') << turboFrogPlayer->points;
 		std::string points(ss.str());
 
+		if (turboFrogPlayer->points >= 10'000)
+			points = "WON!";
+
 		text += points;
 		text += "] ";
 		text += turboFrogPlayer->teamName.substr(0, offset - 14);
@@ -196,7 +199,7 @@ void TurboFrogGame::PrintStats()
 
 void TurboFrogGame::GenerateNewBonusPoints()
 {
-	if (rand() % 100 > 90)
+	if (rand() % 100 > 50 && GetBonusPoints().size() < 50)
 	{
 		const auto randomX = rand() % mapWidth;
 		const auto randomY = rand() % mapHeight;

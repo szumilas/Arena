@@ -1,5 +1,8 @@
 #include "TurboFrogPlayerRandom.h"
 #include "TurboFrogPlayerGreedy.h"
+#include "TurboFrogPlayerShy.h"
+#include "TurboFrogPlayerBigFish.h"
+#include "TurboFrogPlayerBigFishSmart.h"
 
 #include <memory>
 
@@ -11,8 +14,8 @@
 
 int main()
 {
-	int gameWidth = 90;               // [characters]
-	int gameHeight = 50;              // [characters]
+	int gameWidth = 150;               // [characters]
+	int gameHeight = 50;               // [characters]
 
 	//------------------------------------------------------------------
 	// Remember to adjust console window to size gameWidth x gameHeight
@@ -20,9 +23,10 @@ int main()
 
 	TurboFrogGame game(Game::Strategy::TurnBased, gameWidth, gameHeight);
 
-	game.AddPlayer<TurboFrogPlayerGreedy>("Team name 1abcdefghijkl");
-	game.AddPlayer<TurboFrogPlayerGreedy>("Team name 2abcdefghijkl");
-	game.AddPlayer<TurboFrogPlayerRandom>("Team name 3abcdefghijkl");
+	game.AddPlayer<TurboFrogPlayerGreedy>("Greedy");
+	game.AddPlayer<TurboFrogPlayerShy>("Shy");
+	game.AddPlayer<TurboFrogPlayerBigFish>("BigFish");
+	game.AddPlayer<TurboFrogPlayerBigFishSmart>("BigFishSmart");
 
 	game.Start();
 }

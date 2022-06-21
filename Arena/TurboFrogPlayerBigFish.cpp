@@ -1,6 +1,6 @@
-#include "TurboFrogPlayerGreedy.h"
+#include "TurboFrogPlayerBigFish.h"
 
-void TurboFrogPlayerGreedy::CalculateNextMove()
+void TurboFrogPlayerBigFish::CalculateNextMove()
 {
 	int destinationX = 0;
 	int destinationY = 0;
@@ -14,12 +14,15 @@ void TurboFrogPlayerGreedy::CalculateNextMove()
 
 	for (const auto& bonusPoint : GetBonusPoints())
 	{
-		if (auto newDistance =  calculateDistance(bonusPoint.x, bonusPoint.y);
-			minDistance > newDistance)
+		if (bonusPoint.value > 5)
 		{
-			minDistance = newDistance;
-			destinationX = bonusPoint.x;
-			destinationY = bonusPoint.y;
+			if (auto newDistance = calculateDistance(bonusPoint.x, bonusPoint.y);
+				minDistance > newDistance)
+			{
+				minDistance = newDistance;
+				destinationX = bonusPoint.x;
+				destinationY = bonusPoint.y;
+			}
 		}
 	}
 
