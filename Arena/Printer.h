@@ -48,11 +48,14 @@ public:
 	static void ClearBuffer(HANDLE hConsole, int x, int y, int size);
 
 	template<typename ...T>
-	static void PrintCenter(HANDLE hConsole, int consoleWidth, int y, const T&... lines)
+	static void PrintCenter(HANDLE hConsole, int consoleWidth, int mapHeight, int y, const T&... lines)
 	{
 		auto lineY = y;
-		auto PrintLine = [consoleWidth, hConsole, &lineY](const std::string& line)
+		auto PrintLine = [consoleWidth, hConsole, mapHeight, &lineY](const std::string& line)
 		{
+			if (mapHeight <= lineY)
+				return;
+
 			DWORD dwBytesWritten = 0;
 
 			auto startX = static_cast<short>((consoleWidth - line.size()) / 2);

@@ -14,7 +14,7 @@
 
 int main()
 {
-	int gameWidth = 150;               // [characters]
+	int gameWidth = 88;                // [characters]
 	int gameHeight = 50;               // [characters]
 
 	//------------------------------------------------------------------
