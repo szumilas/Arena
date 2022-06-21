@@ -2,6 +2,12 @@
 
 void TurboFrogPlayerBigFish::CalculateNextMove()
 {
+	//--------------------------------------------
+	// Algorithm:
+	// Goes to the closest bonus point with a
+	// value greater than 5
+	//--------------------------------------------
+
 	int destinationX = 0;
 	int destinationY = 0;
 

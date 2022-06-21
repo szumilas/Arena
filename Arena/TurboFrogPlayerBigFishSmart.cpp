@@ -4,6 +4,14 @@
 
 void TurboFrogPlayerBigFishSmart::CalculateNextMove()
 {
+	//--------------------------------------------
+	// Algorithm:
+	// Goes to the closest bonus point with a
+	// value greater than 5. In meantime, he
+	// collects as many other bonus points as 
+	// possible
+	//--------------------------------------------
+
 	int destinationX = 0;
 	int destinationY = 0;
 
@@ -16,7 +24,7 @@ void TurboFrogPlayerBigFishSmart::CalculateNextMove()
 
 	for (const auto& bonusPoint : GetBonusPoints())
 	{
-		if (bonusPoint.value > 2)
+		if (bonusPoint.value > 5)
 		{
 			if (auto newDistance = calculateDistance(bonusPoint.x, bonusPoint.y);
 				minDistance > newDistance)

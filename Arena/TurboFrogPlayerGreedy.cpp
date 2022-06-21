@@ -2,6 +2,11 @@
 
 void TurboFrogPlayerGreedy::CalculateNextMove()
 {
+	//--------------------------------------------
+	// Algorithm:
+	// Goes to the closest bonus point
+	//--------------------------------------------
+
 	int destinationX = 0;
 	int destinationY = 0;
 

@@ -2,6 +2,13 @@
 
 void TurboFrogPlayerShy::CalculateNextMove()
 {
+	//--------------------------------------------
+	// Algorithm:
+	// Goes to the closest bonus point, but bonus
+	// point can't be achieved by any other
+	// oponent
+	//--------------------------------------------
+
 	int destinationX = 0;
 	int destinationY = 0;
 

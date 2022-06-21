@@ -26,7 +26,7 @@ int main()
 	game.AddPlayer<TurboFrogPlayerGreedy>("Greedy");
 	game.AddPlayer<TurboFrogPlayerShy>("Shy");
 	game.AddPlayer<TurboFrogPlayerBigFish>("BigFish");
-	game.AddPlayer<TurboFrogPlayerBigFishSmart>("BigFishSmart");
+	game.AddPlayer<TurboFrogPlayerBigFishSmart>("Smart");
 
 	game.Start();
 }
