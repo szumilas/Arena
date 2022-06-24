@@ -24,6 +24,8 @@ public:
 	inline std::list<BonusPoint>& GetBonusPoints() { return bonusPoints; }
 	inline std::list<std::unique_ptr<Player>>& GetPlayers() { return players; }
 	inline char GetMapElement(int x, int y) { return Game::GetMapElement(x, y); }
+	inline int GetMapWidth() { return Game::GetMapWidth(); }
+	inline int GetMapHeight() { return Game::GetMapHeight(); }
 
 private:
 	virtual void Initialize();

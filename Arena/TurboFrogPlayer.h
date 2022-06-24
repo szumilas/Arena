@@ -21,6 +21,8 @@ public:
 	char GetMapElement(int x, int y) { return game->GetMapElement(x, y); }
 	inline int GetMyX() { return x; }
 	inline int GetMyY() { return y; }
+	inline int GetMapWidth() { return game->GetMapWidth(); }
+	inline int GetMapHeight() { return game->GetMapHeight(); }
 
 protected:
 
