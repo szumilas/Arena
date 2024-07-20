@@ -148,6 +148,7 @@
     <ClCompile Include="TurboBeePlayer.cpp" />
     <ClCompile Include="TurboBeePlayerGreedy.cpp" />
     <ClCompile Include="TurboBeePlayerSmart.cpp" />
+    <ClCompile Include="TurboBeePlayerTeam1.cpp" />
     <ClCompile Include="TurboFrogGame.cpp" />
     <ClCompile Include="TurboFrogPlayer.cpp" />
     <ClCompile Include="TurboFrogPlayerBigFish.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="TurboBeePlayer.h" />
     <ClInclude Include="TurboBeePlayerGreedy.h" />
     <ClInclude Include="TurboBeePlayerSmart.h" />
+    <ClInclude Include="TurboBeePlayerTeam1.h" />
     <ClInclude Include="TurboFrogGame.h" />
     <ClInclude Include="TurboFrogPlayer.h" />
     <ClInclude Include="TurboFrogPlayerBigFish.h" />

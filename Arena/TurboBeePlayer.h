@@ -16,10 +16,17 @@ public:
 		int y;
 	};
 
+	struct BeeDetail
+	{
+		Position position;
+		int bagValue;
+		int beehouseValue;
+	};
+
 	char elementPlayerCovers = '#';
 
 	inline std::list<Flower>& GetFlowers() { return game->GetFlowers(); }
-	std::list<Position> GetOponentsPositions();
+	std::list<BeeDetail> GetOponentsDetails();
 	char GetMapElement(int x, int y) { return game->GetMapElement(x, y); }
 	inline int GetMyX() { return x; }
 	inline int GetMyY() { return y; }

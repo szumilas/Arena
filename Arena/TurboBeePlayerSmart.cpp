@@ -7,9 +7,9 @@ int CalculateDistance(const auto& p1, const auto& p2)
 
 bool TurboBeePlayerSmart::IsOponetCloser(int x, int y, int distance)
 {
-	for (const auto& oponent : GetOponentsPositions())
+	for (const auto& oponent : GetOponentsDetails())
 	{
-		if (CalculateDistance(Position{ oponent.x, oponent.y }, Position{x, y}) < distance)
+		if (CalculateDistance(Position{ oponent.position.x, oponent.position.y }, Position{x, y}) < distance && oponent.bagValue != 10)
 			return true;
 	}
 

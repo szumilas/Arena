@@ -66,6 +66,9 @@
     <ClCompile Include="TurboBeePlayerSmart.cpp">
       <Filter>TurobBee</Filter>
     </ClCompile>
+    <ClCompile Include="TurboBeePlayerTeam1.cpp">
+      <Filter>TurobBee</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -108,6 +111,9 @@
       <Filter>TurobBee</Filter>
     </ClInclude>
     <ClInclude Include="TurboBeePlayerSmart.h">
+      <Filter>TurobBee</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboBeePlayerTeam1.h">
       <Filter>TurobBee</Filter>
     </ClInclude>
   </ItemGroup>

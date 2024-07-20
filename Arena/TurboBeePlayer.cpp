@@ -6,9 +6,9 @@ void TurboBeePlayer::Initialize(TurboBeeGame* TurboBee, char newSign)
 	sign = newSign;
 }
 
-std::list<TurboBeePlayer::Position> TurboBeePlayer::GetOponentsPositions()
+std::list<TurboBeePlayer::BeeDetail> TurboBeePlayer::GetOponentsDetails()
 {
-	std::list<Position> positions;
+	std::list<BeeDetail> positions;
 
 	for (const auto& player : game->GetPlayers())
 	{
@@ -16,7 +16,7 @@ std::list<TurboBeePlayer::Position> TurboBeePlayer::GetOponentsPositions()
 
 		if (this != turboBeePlayer)
 		{
-			positions.push_back({ turboBeePlayer->x, turboBeePlayer->y });
+			positions.push_back({{ turboBeePlayer->x, turboBeePlayer->y }, turboBeePlayer->bag, turboBeePlayer->points});
 		}
 	}
 

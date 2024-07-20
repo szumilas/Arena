@@ -7,6 +7,7 @@
 #include "TurboBeeGame.h"
 #include "TurboBeePlayerGreedy.h"
 #include "TurboBeePlayerSmart.h"
+#include "TurboBeePlayerTeam1.h"
 
 #include <memory>
 
@@ -36,9 +37,10 @@ int main()
 	TurboBeeGame game(Game::Strategy::TurnBased, gameWidth, gameHeight);
 
 	game.AddPlayer<TurboBeePlayerSmart>("Smart");
+	game.AddPlayer<TurboBeePlayerSmart>("Smart");
 	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
 	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
-	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
+	game.AddPlayer<TurboBeePlayerTeam1>("Team1");
 
 	game.Start();
 }

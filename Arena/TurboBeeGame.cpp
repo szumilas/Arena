@@ -11,6 +11,7 @@
 #include <algorithm>
 
 constexpr auto pointsToWin = 100;
+constexpr auto maxNumberOfFlowers = 200;
 
 void TurboBeeGame::Initialize()
 {
@@ -80,7 +81,7 @@ void TurboBeeGame::PrintFlower(const Flower& flower)
 
 void TurboBeeGame::GenerateFlowers()
 {
-	int noOfFlowersToGenerate = 200;
+	auto noOfFlowersToGenerate = maxNumberOfFlowers;
 
 	while (noOfFlowersToGenerate > 0)
 	{
@@ -454,7 +455,7 @@ void TurboBeeGame::BloomFlowers()
 {
 	for (auto& flower : flowers)
 	{
-		if (rand() % 1000 < 2)
+		if (rand() % 10000 < 15)
 		{
 			flower.hasPollen = true;
 			PrintFlower(flower);
