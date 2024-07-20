@@ -4,6 +4,10 @@
 #include "TurboFrogPlayerBigFish.h"
 #include "TurboFrogPlayerBigFishSmart.h"
 
+#include "TurboBeeGame.h"
+#include "TurboBeePlayerGreedy.h"
+#include "TurboBeePlayerSmart.h"
+
 #include <memory>
 
 #include <stdio.h>
@@ -21,12 +25,20 @@ int main()
 	// Remember to adjust console window to size gameWidth x gameHeight
 	//------------------------------------------------------------------
 
-	TurboFrogGame game(Game::Strategy::TurnBased, gameWidth, gameHeight);
+	//TurboFrogGame game(Game::Strategy::TurnBased, gameWidth, gameHeight);
+	//
+	//game.AddPlayer<TurboFrogPlayerGreedy>("Greedy");
+	//game.AddPlayer<TurboFrogPlayerShy>("Shy");
+	//game.AddPlayer<TurboFrogPlayerBigFish>("BigFish");
+	//game.AddPlayer<TurboFrogPlayerBigFishSmart>("Smart");
 
-	game.AddPlayer<TurboFrogPlayerGreedy>("Greedy");
-	game.AddPlayer<TurboFrogPlayerShy>("Shy");
-	game.AddPlayer<TurboFrogPlayerBigFish>("BigFish");
-	game.AddPlayer<TurboFrogPlayerBigFishSmart>("Smart");
+
+	TurboBeeGame game(Game::Strategy::TurnBased, gameWidth, gameHeight);
+
+	game.AddPlayer<TurboBeePlayerSmart>("Smart");
+	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
+	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
+	game.AddPlayer<TurboBeePlayerGreedy>("Greedy");
 
 	game.Start();
 }

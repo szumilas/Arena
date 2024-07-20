@@ -16,6 +16,9 @@
     <Filter Include="TurboFrog">
       <UniqueIdentifier>{e3e68e59-54cc-46a0-9942-1daaf9f22388}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TurobBee">
+      <UniqueIdentifier>{cef59501-48f3-424a-852f-628029a7a93c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +54,18 @@
     <ClCompile Include="TurboFrogPlayerBigFishSmart.cpp">
       <Filter>TurboFrog</Filter>
     </ClCompile>
+    <ClCompile Include="TurboBeeGame.cpp">
+      <Filter>TurobBee</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboBeePlayer.cpp">
+      <Filter>TurobBee</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboBeePlayerGreedy.cpp">
+      <Filter>TurobBee</Filter>
+    </ClCompile>
+    <ClCompile Include="TurboBeePlayerSmart.cpp">
+      <Filter>TurobBee</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -82,6 +97,18 @@
     </ClInclude>
     <ClInclude Include="TurboFrogPlayerBigFishSmart.h">
       <Filter>TurboFrog</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboBeeGame.h">
+      <Filter>TurobBee</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboBeePlayer.h">
+      <Filter>TurobBee</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboBeePlayerGreedy.h">
+      <Filter>TurobBee</Filter>
+    </ClInclude>
+    <ClInclude Include="TurboBeePlayerSmart.h">
+      <Filter>TurobBee</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
