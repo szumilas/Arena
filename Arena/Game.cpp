@@ -9,6 +9,7 @@ Game::Game(Strategy strategy, int width, int height)
 	: strategy(strategy), gameWidth(width), gameHeight(height), mapWidth(width), mapHeight(height - panelHeight)
 {
 	map = new char[mapWidth * mapHeight]();
+	defaultMap = new char[mapWidth * mapHeight]();
 	colors = new WORD[mapWidth * mapHeight]();
 
 	hConsole = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
@@ -18,6 +19,7 @@ Game::Game(Strategy strategy, int width, int height)
 Game::~Game()
 {
 	delete[] map;
+	delete[] defaultMap;
 	delete[] colors;
 }
 
@@ -40,6 +42,7 @@ void Game::Initialize()
 
 void Game::MainLoop()
 {
+	state = State::Battle;
 	while (state != State::GameOver)
 	{
 		auto t_start = std::chrono::high_resolution_clock::now();

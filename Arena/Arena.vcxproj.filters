@@ -19,6 +19,9 @@
     <Filter Include="TurobBee">
       <UniqueIdentifier>{cef59501-48f3-424a-852f-628029a7a93c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Football">
+      <UniqueIdentifier>{7e328617-bac7-46aa-bca9-2cdb0c554562}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,8 +69,26 @@
     <ClCompile Include="TurboBeePlayerSmart.cpp">
       <Filter>TurobBee</Filter>
     </ClCompile>
-    <ClCompile Include="TurboBeePlayerTeam1.cpp">
-      <Filter>TurobBee</Filter>
+    <ClCompile Include="FootballGame.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer_Team1.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer_Team2.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer_Team3.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer_Team4.cpp">
+      <Filter>Football</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballPlayer_Team_TEMPLATE.cpp">
+      <Filter>Football</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,8 +134,29 @@
     <ClInclude Include="TurboBeePlayerSmart.h">
       <Filter>TurobBee</Filter>
     </ClInclude>
-    <ClInclude Include="TurboBeePlayerTeam1.h">
-      <Filter>TurobBee</Filter>
+    <ClInclude Include="FootballGame.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer_Team1.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer_Team2.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer_Team3.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer_Team4.h">
+      <Filter>Football</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballPlayer_Team_TEMPLATE.h">
+      <Filter>Football</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

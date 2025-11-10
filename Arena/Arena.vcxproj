@@ -143,12 +143,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FootballGame.cpp" />
+    <ClCompile Include="FootballPlayer.cpp" />
+    <ClCompile Include="FootballPlayer_Team1.cpp" />
+    <ClCompile Include="FootballPlayer_Team2.cpp" />
+    <ClCompile Include="FootballPlayer_Team3.cpp" />
+    <ClCompile Include="FootballPlayer_Team4.cpp" />
+    <ClCompile Include="FootballPlayer_Team_TEMPLATE.cpp" />
     <ClCompile Include="Printer.cpp" />
     <ClCompile Include="TurboBeeGame.cpp" />
     <ClCompile Include="TurboBeePlayer.cpp" />
     <ClCompile Include="TurboBeePlayerGreedy.cpp" />
     <ClCompile Include="TurboBeePlayerSmart.cpp" />
-    <ClCompile Include="TurboBeePlayerTeam1.cpp" />
     <ClCompile Include="TurboFrogGame.cpp" />
     <ClCompile Include="TurboFrogPlayer.cpp" />
     <ClCompile Include="TurboFrogPlayerBigFish.cpp" />
@@ -161,12 +167,19 @@
     <ClCompile Include="TurboFrogPlayerShy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FootballGame.h" />
+    <ClInclude Include="FootballPlayer.h" />
+    <ClInclude Include="FootballPlayer_Team1.h" />
+    <ClInclude Include="FootballPlayer_Team2.h" />
+    <ClInclude Include="FootballPlayer_Team3.h" />
+    <ClInclude Include="FootballPlayer_Team4.h" />
+    <ClInclude Include="FootballPlayer_Team_TEMPLATE.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Printer.h" />
     <ClInclude Include="TurboBeeGame.h" />
     <ClInclude Include="TurboBeePlayer.h" />
     <ClInclude Include="TurboBeePlayerGreedy.h" />
     <ClInclude Include="TurboBeePlayerSmart.h" />
-    <ClInclude Include="TurboBeePlayerTeam1.h" />
     <ClInclude Include="TurboFrogGame.h" />
     <ClInclude Include="TurboFrogPlayer.h" />
     <ClInclude Include="TurboFrogPlayerBigFish.h" />
